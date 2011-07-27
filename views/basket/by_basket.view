@@ -1,0 +1,16 @@
+[map]
+function(doc) {
+  if(doc.type == "item"){
+    if(doc.quantity && doc.quantity > 1){
+      doc.price = Number(doc.price) * Number(doc.quantity);
+      emit(doc.basket, doc);
+    } else {  
+      emit(doc.basket, doc);
+    }
+  }
+}
+[params]
+name = by_basket
+language = javascript
+_id = _design/basket
+_rev = 4-0024c2ce0abfff3d07fa99f0b487b1ab
