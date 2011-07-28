@@ -1,0 +1,12 @@
+[map]
+function(doc) {
+  if(doc.timestamp){
+      emit(doc.timestamp, null);
+  }
+}
+
+[params]
+name = timestamp
+language = javascript
+_id = _design/basket
+_rev = 1-5f91c11b5199ed335cdad98f9d6c4bdc

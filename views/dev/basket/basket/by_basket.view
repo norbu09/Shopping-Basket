@@ -9,8 +9,9 @@ function(doc) {
     }
   }
 }
+
 [params]
 name = by_basket
 language = javascript
 _id = _design/basket
-_rev = 4-0024c2ce0abfff3d07fa99f0b487b1ab
+_rev = 1-5f91c11b5199ed335cdad98f9d6c4bdc
