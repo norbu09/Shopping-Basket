@@ -2,6 +2,7 @@ package Shopping::Basket;
 
 use Mouse;
 use Data::UUID;
+use Shopping::Basket::Product;
 
 =head1 NAME
 
@@ -16,7 +17,7 @@ Version 0.01
 our $VERSION = '0.01';
 
 has 'debug' => (is => 'rw', isa => 'Bool', default => 0, predicate => 'is_debug');
-has 'db' => (is => 'rw', isa => 'Str', default => 'basket');
+has 'basket_db' => (is => 'rw', isa => 'Str', default => 'basket');
 has 'couch_host' => (is => 'rw', isa => 'Str', default => '127.0.0.1');
 has 'couch_port' => (is => 'rw', isa => 'Str', default => '5984');
 has 'couch' => ( is => 'rw', isa => 'Store::CouchDB', default => sub{Store::CouchDB->new});
@@ -24,13 +25,14 @@ has 'tax' => (is => 'rw', isa => 'Int', default => 0);
 has 'discount' => (is => 'rw', isa => 'Int', default => 0);
 has 'basket_id' => (is => 'rw', isa => 'Str', default => sub{Data::UUID->new->create_str});
 has 'currency' => (is => 'rw', isa => 'Str', default => 'NZD');
+has 'notify' => (is => 'rw', isa =>'Str');
 
 sub BUILD {
     my $self = shift;
 
     $self->couch->host($self->couch_host);
     $self->couch->port($self->couch_port);
-    $self->couch->db($self->db);
+    $self->couch->db($self->basket_db);
 }
 
 =head1 SYNOPSIS
@@ -169,12 +171,11 @@ sub item_needs_tax_update {
 sub item_needs_curr_update {
     my ( $self, $doc ) = @_;
 
-    $doc->{price} = $self->get_product_price($doc->{product_key}, $doc->{mode});
+    $doc->{price} = $self->get_product_price($doc->{product_key});
     $doc->{currency} = $self->currency;
 
     $self->couch->update_doc( { name => $doc->{id}, doc => $doc } );
-    # TODO add a notify type and add I18N support
-    #$self->notify = $self->loc('Your account currency is [_1] so we converted your shopping cart', $self->currency);
+    $self->notify = 'Your account currency is '.$self->currency.' so we converted your shopping cart';
     return $doc;
 }
 
@@ -184,14 +185,6 @@ sub get_discount {
     # TODO implement discount engine (plugin?)
     my $price;
     return $price;
-}
-
-sub get_product_price {
-    my ($self, $product_key, $mode) = @_;
-
-    #TODO add a pricing plugin
-
-    return;
 }
 
 =head1 AUTHOR
