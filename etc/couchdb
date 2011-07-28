@@ -1,0 +1,7 @@
+export_dir = ./views
+
+[dev]
+    host = 127.0.0.1
+    port = 4984
+    user = test
+    pass = test
