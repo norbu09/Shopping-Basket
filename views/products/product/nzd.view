@@ -1,0 +1,11 @@
+[map]
+function(doc) {
+  if(doc.NZD){
+    emit(doc.name, doc.NZD);
+  }
+}
+[params]
+name = nzd
+language = javascript
+_id = _design/product
+_rev = 3-ae8f0dcf9580c435daaaffa579469290

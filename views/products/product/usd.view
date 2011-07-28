@@ -1,0 +1,11 @@
+[map]
+function(doc) {
+  if(doc.USD){
+    emit(doc.name, doc.USD);
+  }
+}
+[params]
+name = usd
+language = javascript
+_id = _design/product
+_rev = 3-ae8f0dcf9580c435daaaffa579469290

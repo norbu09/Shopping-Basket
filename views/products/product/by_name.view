@@ -1,0 +1,9 @@
+[map]
+function(doc) {
+  emit(doc.name, null);
+}
+[params]
+name = by_name
+language = javascript
+_id = _design/product
+_rev = 3-ae8f0dcf9580c435daaaffa579469290

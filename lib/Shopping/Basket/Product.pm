@@ -25,18 +25,23 @@ sub get_product {
     my $view = { view => 'product/by_name',
         opts => {
             key   => '"' . $product . '"',
+            include_docs => 'true',
         },
     };
     my $res = $self->product_couch->get_view($view);
-    return $res->{$self->basket_id} || undef;
+    return $res->{$product} || undef;
 }
 
 sub get_product_price {
     my ($self, $product) = @_;
 
-    my $prod = $self->get_product($product);
-
+    my $view = { view => 'product/'.lc($self->currency),
+        opts => {
+            key   => '"' . $product . '"',
+        },
+    };
+    my $res = $self->product_couch->get_view($view);
     #TODO add a pricing plugin
-    return $prod->{value};
+    return $res->{$product}->{value} || undef;
 }
 

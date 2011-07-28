@@ -56,7 +56,7 @@ foreach my $row (@{$docs->{rows}}){
     my $views = delete $doc->{views};
     print "saving $name\n";
     foreach my $view (keys %{$views}){
-        my $vdir = $dir.'/'.$host.'/'.$db.'/'.$name;
+        my $vdir = $dir.'/'.$db.'/'.$name;
         if(! -d $vdir){
             mkpath($vdir);
             if($@){
