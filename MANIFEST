@@ -16,6 +16,9 @@ views/basket/basket/total_by_basket.view
 views/products/product/by_name.view
 views/products/product/nzd.view
 views/products/product/usd.view
+views/products/product/nzd_by_link.view
+views/products/product/nzd_showcase.view
+views/products/product/usd_showcase.view
 bin/couch_dump_views
 bin/couch_load_views
 etc/couchdb

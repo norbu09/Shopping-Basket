@@ -14,11 +14,11 @@ Shopping::Basket - The great new Shopping::Basket!
 
 =head1 VERSION
 
-Version 0.01
+Version 0.2.2.01
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.2';
 
 has 'debug' => (is => 'rw', isa => 'Bool', default => 0, predicate => 'is_debug');
 has 'basket_db' => (is => 'rw', isa => 'Str', default => 'basket');
