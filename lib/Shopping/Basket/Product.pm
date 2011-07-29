@@ -19,6 +19,30 @@ sub BUILD {
 }
 
 
+sub get_showcase {
+    my ($self) = @_;
+
+    my $view = { view => 'product/'.lc($self->currency).'_showcase',
+        opts => {
+            ascending => 'true',
+        },
+    };
+    my $res = $self->product_couch->get_array_view($view);
+    return $res;
+}
+
+sub get_product_by_link {
+    my ($self, $product) = @_;
+
+    my $view = { view => 'product/'.lc($self->currency).'_by_link',
+        opts => {
+            key   => '"' . $product . '"',
+        },
+    };
+    my $res = $self->product_couch->get_view($view);
+    return $res->{$product};
+}
+
 sub get_product {
     my ($self, $product) = @_;
 

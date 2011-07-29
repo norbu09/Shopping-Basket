@@ -5,6 +5,8 @@ package Shopping::Basket;
 use Mouse;
 use Data::UUID;
 use Shopping::Basket::Product;
+use Store::CouchDB;
+use Data::Dumper;
 
 =head1 NAME
 
@@ -12,7 +14,7 @@ Shopping::Basket - The great new Shopping::Basket!
 
 =head1 VERSION
 
-Version 0.01.01.01.01.01.01.01.01.01.01.01
+Version 0.01
 
 =cut
 
@@ -66,6 +68,7 @@ sub add {
         type => 'item',
         timestamp => time,
         basket => $self->basket_id,
+        currency => $self->currency,
     };
     foreach my $ky (keys %{$item}){
         $doc->{$ky} = $item->{$ky};
@@ -85,14 +88,15 @@ sub add {
 sub count {
     my ( $self ) = @_;
 
-    my $view = { view => 'basket/count_by_session',
+    my $view = { view => 'basket/count_by_basket',
         opts => {
             group => 'true',
             key   => '"' . $self->basket_id . '"',
         },
     };
     my $res = $self->couch->get_view($view);
-    return $res->{$self->basket_id}->{value};
+    print STDERR Dumper($res);
+    return $res->{$self->basket_id};
 }
 
 sub delete {
@@ -133,7 +137,7 @@ sub get_total {
 sub load {
     my ( $self ) = @_;
 
-    my $view = { view => 'basket/by_session',
+    my $view = { view => 'basket/by_basket',
         opts => { key => '"' . $self->basket_id . '"' },
       };
     my $res = $self->couch->get_array_view($view);
