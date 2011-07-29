@@ -8,4 +8,4 @@ function(doc) {
 name = usd
 language = javascript
 _id = _design/product
-_rev = 3-ae8f0dcf9580c435daaaffa579469290
+_rev = 9-b54d7f294f6f802a101976e394f848a3

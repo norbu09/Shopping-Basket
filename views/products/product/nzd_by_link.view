@@ -1,0 +1,9 @@
+[map]
+function(doc) {
+  emit(doc.sku, {link: doc.sku, price: doc.NZD, description: doc.description, images: doc.images, name:doc.name, sku:doc.sku});
+}
+[params]
+name = nzd_by_link
+language = javascript
+_id = _design/product
+_rev = 9-b54d7f294f6f802a101976e394f848a3
