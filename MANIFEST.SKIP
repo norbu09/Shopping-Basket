@@ -1,0 +1,10 @@
+ignore.txt
+inc/
+blib/
+t/.vimbk/
+.git/
+.gitignore
+.gitCOMMIT_EDITMSG
+.shipit
+.vimbk/
+.swp

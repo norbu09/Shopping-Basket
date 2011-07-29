@@ -1,9 +1,21 @@
 Changes
-lib/Shopping/Basket.pm
 Makefile.PL
 MANIFEST			This list of files
+MANIFEST.SKIP
 README
 t/00-load.t
+t/boilerplate.t
 t/manifest.t
-t/pod-coverage.t
 t/pod.t
+lib/Shopping/Basket.pm
+lib/Shopping/Basket/Product.pm
+views/basket/basket/by_basket.view
+views/basket/basket/count_by_basket.view
+views/basket/basket/timestamp.view
+views/basket/basket/total_by_basket.view
+views/products/product/by_name.view
+views/products/product/nzd.view
+views/products/product/usd.view
+bin/couch_dump_views
+bin/couch_load_views
+etc/couchdb

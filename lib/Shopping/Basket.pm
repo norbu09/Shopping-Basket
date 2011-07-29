@@ -1,3 +1,5 @@
+#!/usr/bin/perl -Ilib
+
 package Shopping::Basket;
 
 use Mouse;
@@ -10,7 +12,7 @@ Shopping::Basket - The great new Shopping::Basket!
 
 =head1 VERSION
 
-Version 0.01
+Version 0.01.01.01.01.01.01.01.01.01.01.01
 
 =cut
 

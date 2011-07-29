@@ -7,6 +7,10 @@ _build*
 pm_to_blib*
 *.tar.gz
 .lwpcookies
+.shipit
+.gitignore
 cover_db
 pod2htm*.tmp
 Shopping-Basket-*
+*.swp
+*.vimbk
